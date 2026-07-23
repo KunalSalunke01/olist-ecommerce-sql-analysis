@@ -1,6 +1,6 @@
 # Olist Brazilian E-Commerce — SQL Analysis
 
-End-to-end SQL analysis of the Olist Brazilian e-commerce dataset: schema design, data quality auditing, cleaning, and 51 business-question queries covering revenue, customers, sellers, products, and delivery performance.
+An end-to-end SQL analytics project built on the Olist Brazilian E-Commerce dataset. The project covers relational database design, exploratory data analysis, data cleaning, business KPI analysis, and executive dashboards using PostgreSQL.
 
 ## KPI Snapshot
 
@@ -15,9 +15,12 @@ End-to-end SQL analysis of the Olist Brazilian e-commerce dataset: schema design
 | Top Payment Method | Credit Card (74%) |
 | Total Sellers / Products | 3,095 / 32,951 |
 
+Currency - All monetary values in this project are reported in **Brazilian Real (BRL, R$)**.
+
+
 ## Dataset
 
-Public Kaggle dataset from Olist, a Brazilian e-commerce marketplace. Covers ~99,000 orders placed between **2016-09-04 and 2018-10-17** across 9 relational tables:
+Public Kaggle dataset from Olist, a Brazilian e-commerce marketplace. Covers **99,441** orders placed between **2016-09-04 and 2018-10-17** across 9 relational tables:
 
 | Table | Rows | Description |
 |---|---|---|
@@ -37,7 +40,7 @@ PostgreSQL
 
 ## Entity-Relationship Diagram
 
-`erd.png` — *(add diagram here)*
+![ERD](erd.png)
 
 ## Project Structure
 
@@ -46,7 +49,7 @@ sql/
 ├── 01_schema.sql              -- table creation, PKs, FKs, indexes
 ├── 02_data_exploration.sql    -- null checks, duplicate checks, anomaly detection
 ├── 03_data_cleaning.sql       -- invalid record removal, deduplication
-└── 04_business_questions.sql  -- 47 business questions across 5 sections
+├── 04_business_questions.sql  -- 47 business questions across 5 sections
 └── 05_business_dashboards.sql  -- 3 executive business dashboards
 ```
 
@@ -61,9 +64,9 @@ sql/
 ## Key Findings
 
 **Customers & Orders**
-- São Paulo (SP) accounts for the largest share of customers (41,746) — more than 3x the next-highest state (RJ, 12,852).
+- Sao Paulo (SP) accounts for the largest share of customers (41,746) — more than 3x the next-highest state (RJ, 12,852).
 - 96,478 of 99,441 orders (97%) were successfully delivered; 625 canceled, 609 unavailable.
-- Average order value: R$137.75.
+- Average order value (AOV): R$137.75.
 
 **Payments**
 - Credit card is the dominant payment method (76,795 of ~103,900 payments, ~74%), followed by boleto (19,784).
@@ -95,20 +98,20 @@ sql/
 
 **31–40 Product & Seller Analysis** — unsold products/inactive sellers, seller revenue ranking, top sellers by state, product ranking within category, multi-category sellers, avg price by category, seller revenue contribution
 
-**41–51 Advanced Case Studies** — delivery time by seller, late delivery % by state, review scores by product/seller/category, freight-vs-delivery-time correlation, customer dashboard, seller dashboard, executive sales dashboard with running revenue total
+**41–50 Advanced Case Studies & Business Dashboard** — delivery time by seller, late delivery % by state, review scores by product/seller/category, freight-vs-delivery-time correlation, customer dashboard, seller dashboard, executive sales dashboard with running revenue total
 
-## Dashboard Query Results
+## Dashboard Dashboards
 
-Screenshots of the 3 dashboard queries from `04_business_questions.sql` (query results run in your SQL client):
+Screenshots of the 3 dashboard queries from `05_business_dashboards.sql` :
 
 **Customer Dashboard** — total orders, total spend, avg order value, first/last order date, favorite payment method per customer
-`dashboards/customer_dashboard.png`
+![Customer Dashboard](dashboards/customer_dashboard.png)
 
 **Seller Dashboard** — total revenue, orders, products sold, avg freight cost, avg review score, revenue rank per seller
-`dashboards/seller_dashboard.png`
+![Seller Dashboard](dashboards/seller_dashboard.png)
 
-**Executive Sales Dashboard** — monthly orders, revenue, avg order value, top category, top seller, payment mode, avg review, late delivery %, running revenue total
-`dashboards/executive_dashboard.png`
+**Executive Sales Dashboard** — monthly orders, revenue, avg order value, payment mode, avg review, top category, top seller, late delivery %, running revenue total
+![Executive Dashboard](dashboards/executive_dashboard.png)
 
 ## Known Data Limitations
 
@@ -118,5 +121,7 @@ Screenshots of the 3 dashboard queries from `04_business_questions.sql` (query r
 
 ## Future Work
 
-- Power BI dashboard on top of these queries
-- Full end-to-end pipeline: SQL → Pandas → Power BI
+- Interactive Power BI dashboard
+- Customer RFM Segmentation
+- Sales forecasting using Python
+- End-to-end analytics pipeline (PostgreSQL → Pandas → Power BI)
